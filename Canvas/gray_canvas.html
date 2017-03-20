@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+	<canvas width="640" height="426"></canvas>
+
+	<script type="text/javascript">
+		var canvas = document.querySelector("canvas");
+		var ctx = canvas.getContext("2d");
+
+		var image = new Image();
+		image.onload = function(){
+			ctx.drawImage(image,0,0);
+			convertGray();
+		}
+		image.src = "airplane.jpg";
+
+		var makePixelGrayScale = function(r,g,b,alpha){
+			var y = (0.3 * r) + (0.59 * g) + (0.11 * b);
+			return {r:y,g:y,b:y,alpha:y};
+		}
+		
+		function convertGray(){
+			var imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+			var numPixels = imageData.data.length / 4;
+			for(var i=0;i<numPixels;i++){
+				var r = imageData.data[i*4+0];
+	            var g = imageData.data[i*4+1];
+	            var b = imageData.data[i*4+2];
+	            var alpha = imageData.data[i*4+3];
+	            // calculate gray scale value    
+	            pixel = makePixelGrayScale(r,g,b,alpha);
+	  			imageData.data[i+0] = pixel.r;
+	  			imageData.data[i+1] = pixel.g;
+	  			imageData.data[i+2] = pixel.b;
+	  			imageData.data[i+3] = pixel.alpha;
+			}
+			ctx.putImageData(imageData,0,0);
+		}
+	</script>
+</body>
+</html>
