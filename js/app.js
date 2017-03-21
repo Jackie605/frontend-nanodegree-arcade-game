@@ -26,8 +26,9 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 Enemy.prototype.checkCollisions = function(player){
-    if(this.y === player.y){
-        console.log("This player is Game over");
+    if(0<=play.x-this.x<=50 && Math.abs(player.y-this.y)<30)
+    {
+        console.log("loser");
     }else{
         console.log("player is safety!!");
     }
@@ -38,10 +39,21 @@ var Player = function(x,y){
     this.x = x;
     this.y = y;
     this.sprite = 'images/char-boy.png';
-};
-  
-Player.prototype.update = function(dt){
-    
+};  
+Player.prototype.update = function(dt,x,y){
+    if(this.y<=30){
+        //设置字体样式
+        ctx.font = "80px Courier New";
+        //设置字体颜色
+        ctx.fillStyle = "Red";
+        //从坐标点(50,50)开始绘制文字
+        ctx.fillText("u win!!!", 50,50);
+        //setTimeout(1000);  
+        //this.x = 200;
+        //this.y = 300;
+        //ctx.clearRect(0,0,505,50);
+        
+    }  
 };
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -75,8 +87,6 @@ for(var i=0;i<6;i++){
     var bugs = new Enemy(-30,83*(i%3)+55);
     allEnemies.push(bugs);
 };
-//[new Enemy(-30,0.7*83)];,new Enemy(-30,1.7*83),new Enemy(-30,2.7*83),
-                  //new Enemy(-30,0.8*83),new Enemy(-30,1.8*83),new Enemy(-30,2.6*83)];
 
 var player = new Player(200,300);
 // 这段代码监听游戏玩家的键盘点击事件并且代表将按键的关键数字送到 Play.handleInput()
