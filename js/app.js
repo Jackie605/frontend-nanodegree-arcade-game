@@ -37,8 +37,7 @@ var Player = function(x,y){
 //定义一个全局变量，为了使得玩家在每一毫秒刷新之前，能够不出现无法到达河岸，就弹出游戏胜利并回到原位的现象
 var count = 0;
 Player.prototype.update = function(dt){
-    console.log(this.y);
-
+    //console.log(this.y);
     if(this.y === -11){
        count++;
        //经过测试，经过3ms后，就可以实现到达河岸，并网页输出胜利指示，确定后，即可回到原位。
@@ -76,6 +75,18 @@ Player.prototype.handleInput = function(movement){
         if(this.y<=321){//606
             this.y += 83;
         }break;
+    }
+};
+//实现碰撞函数
+Player.prototype.checkCollisions = function(){
+    for(var i=0;i<allEnemies.length;i++){
+        //首先判断player和enemy是否在同一行（此处因为我所设置的player和enemy是每一行所在位置的y坐标是相同的）
+        if(this.y === allEnemies[i].y){
+            if((Math.abs(this.x - allEnemies[i].x))<40){
+                this.x =200;
+                this.y =404;
+            }
+       }
     }
 };
 
