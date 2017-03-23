@@ -1,7 +1,7 @@
 ## 前端纳米学位街机游戏克隆项目
-    本项目是一款类似于青蛙过河的街机游戏，是基于网页开发的，是依据udacity的[评审标准](https://review.udacity.com/#!/rubrics/499/view)来修改代码的。
+    本项目是一款类似于青蛙过河的街机游戏，是基于网页开发的。
 ### 游戏运行
-	1.你需要一个浏览器，例如[Google](http://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html),或者[百度](www.baidu.com);
+	1.你需要一个浏览器，例如Google,或者百度;
 	2.点击index.html即可运行。
 ### 游戏规则
 	1.使用键盘的上下左右键进行player的控制，每次动作一格；
