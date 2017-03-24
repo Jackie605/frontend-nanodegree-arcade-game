@@ -70,9 +70,7 @@ var Engine = (function(global) {
         checkCollisions();
     }
     function checkCollisions(){
-        allEnemies.forEach(function(enemy) {
-        enemy.checkCollisions();
-        }
+        player.checkCollisions();
     }
     
     /* 这个函数会遍历在 app.js 定义的存放所有敌人实例的数组，并且调用他们的 update()

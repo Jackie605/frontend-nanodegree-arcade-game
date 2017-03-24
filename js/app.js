@@ -35,16 +35,6 @@ Enemy.prototype.update = function(dt,x) {
     }
 };
 
-//实现碰撞函数
-Enemy.prototype.checkCollisions = function(player){
-    if(this.y === player.y){
-        if((Math.abs(this.x - player.x))<40){
-            player.x =200;
-            player.y =404;
-        }
-    }
-};
-
 // 现在实现你自己的玩家类
 // 这个类需要一个 update() 函数， render() 函数和一个 handleInput()函数
 var Player = function(x,y){
@@ -97,7 +87,18 @@ Player.prototype.handleInput = function(movement){
         }break;
     }
 };
-
+//实现碰撞函数
+Player.prototype.checkCollisions = function(){
+    for(var i=0;i<allEnemies.length;i++){
+        //首先判断player和enemy是否在同一行（此处因为我所设置的player和enemy是每一行所在位置的y坐标是相同的）
+        if(this.y === allEnemies[i].y){
+            if((Math.abs(this.x - allEnemies[i].x))<40){
+                this.x =200;
+                this.y =404;
+            }
+       }
+    }
+};
 // 现在实例化你的所有对象
 // 把所有敌人的对象都放进一个叫 allEnemies 的数组里面
 var allEnemies = [];
